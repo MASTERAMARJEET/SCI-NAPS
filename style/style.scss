@@ -1,0 +1,202 @@
+//TODO: Fix the nav height problem at very large height. Maybe use mixins.
+$nav_height_min: 64px; // depends on the min height of the logo
+$nav_height_max: 6rem; // depends on the top padding of the heading
+
+:root {
+  --font-primary: Helvetica;
+  --nav-bg-color: aqua;
+  --nav-btn-color: black;
+  --nav-section-color: black;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.75;
+}
+h1 {
+  font-size: 7.5vw;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.25em;
+}
+
+p {
+  text-align: justify;
+}
+
+nav {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items: center;
+  width: 100%;
+  height: 8vh;
+  min-height: $nav_height_min;
+  max-height: $nav_height_max;
+  background-color: var(--nav-bg-color);
+}
+
+.logo {
+  grid-column: 1/2;
+  & img {
+    display: block;
+    margin: auto;
+  }
+}
+.links {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  &__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--nav-section-color);
+  }
+
+  &__list {
+    list-style: none;
+    text-decoration: none;
+  }
+}
+
+.burger {
+  grid-column: -2/-1;
+  display: none;
+  &__line {
+    width: 30px;
+    height: 3px;
+    background-color: var(--nav-btn-color);
+    margin: 5px;
+  }
+}
+
+.head {
+  padding-top: 5.5rem;
+  &__sub {
+    text-align: center;
+    font-size: 3.25vw;
+    padding-bottom: 0.5em;
+    font-weight: 600;
+  }
+}
+
+.content {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+}
+
+.btn {
+  background-color: var(--nav-bg-color);
+  color: var(--nav-section-color);
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  padding: 0.75em;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 950px) {
+  .links {
+    &__link {
+      font-size: 1rem;
+    }
+  }
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    overflow-x: hidden;
+  }
+  nav {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+  .place-holder {
+    width: 60%;
+  }
+  .links {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    width: 35%;
+    background-color: var(--nav-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+
+    &__link {
+      line-height: 2.5;
+      font-size: 1.15rem;
+      opacity: 0;
+    }
+  }
+  .head {
+    &__sub {
+      font-size: 4vw;
+    }
+  }
+  .btn {
+    font-size: 0.75rem;
+  }
+  .content {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 12vw;
+  }
+  .links {
+    &__link {
+      font-size: 0.9rem;
+    }
+  }
+  .head {
+    &__sub {
+      font-size: 6vw;
+    }
+  }
+  .btn {
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+}
+
+.links {
+  &--appear {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

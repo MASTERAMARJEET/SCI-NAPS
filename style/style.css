@@ -1,0 +1,241 @@
+:root {
+  --font-primary: Helvetica;
+  --nav-bg-color: aqua;
+  --nav-btn-color: black;
+  --nav-section-color: black;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.75;
+}
+
+h1 {
+  font-size: 7.5vw;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.25em;
+}
+
+p {
+  text-align: justify;
+}
+
+nav {
+  position: fixed;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr 1fr;
+      grid-template-columns: 1fr 5fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 8vh;
+  min-height: 64px;
+  max-height: 6rem;
+  background-color: var(--nav-bg-color);
+}
+
+.logo {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+.logo img {
+  display: block;
+  margin: auto;
+}
+
+.links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.links__link {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--nav-section-color);
+}
+
+.links__list {
+  list-style: none;
+  text-decoration: none;
+}
+
+.burger {
+  grid-column: -2/-1;
+  display: none;
+}
+
+.burger__line {
+  width: 30px;
+  height: 3px;
+  background-color: var(--nav-btn-color);
+  margin: 5px;
+}
+
+.head {
+  padding-top: 5.5rem;
+}
+
+.head__sub {
+  text-align: center;
+  font-size: 3.25vw;
+  padding-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.content {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+}
+
+.btn {
+  background-color: var(--nav-bg-color);
+  color: var(--nav-section-color);
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  padding: 0.75em;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 950px) {
+  .links__link {
+    font-size: 1rem;
+  }
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    overflow-x: hidden;
+  }
+  nav {
+    -ms-grid-columns: 1fr 3fr 1fr;
+        grid-template-columns: 1fr 3fr 1fr;
+  }
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+  .place-holder {
+    width: 60%;
+  }
+  .links {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    width: 35%;
+    background-color: var(--nav-bg-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.5s ease-in;
+    transition: -webkit-transform 0.5s ease-in;
+    transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in;
+  }
+  .links__link {
+    line-height: 2.5;
+    font-size: 1.15rem;
+    opacity: 0;
+  }
+  .head__sub {
+    font-size: 4vw;
+  }
+  .btn {
+    font-size: 0.75rem;
+  }
+  .content {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 12vw;
+  }
+  .links__link {
+    font-size: 0.9rem;
+  }
+  .head__sub {
+    font-size: 6vw;
+  }
+  .btn {
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+}
+
+.links--appear {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+@-webkit-keyframes navLinkFade {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+/*# sourceMappingURL=style.css.map */
