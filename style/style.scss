@@ -1,12 +1,12 @@
 //TODO: Fix the nav height problem at very large height. Maybe use mixins.
-$nav_height_min: 64px; // depends on the min height of the logo
-$nav_height_max: 6rem; // depends on the top padding of the heading
+$nav_height_min: 64px; // ! depends on the min height of the logo
+$nav_height_max: 6rem; // ! depends on the top padding of the heading
 
 :root {
   --font-primary: Helvetica;
-  --nav-bg-color: aqua;
-  --nav-btn-color: black;
-  --nav-section-color: black;
+  --color-primary: black;
+  --color-secondary: white;
+  --color-accent: rgb(255, 60, 223);
 }
 
 * {
@@ -17,7 +17,9 @@ $nav_height_max: 6rem; // depends on the top padding of the heading
 
 body {
   font-family: var(--font-primary);
-  line-height: 1.75;
+  line-height: 1.25;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
 }
 h1 {
   font-size: 7.5vw;
@@ -32,6 +34,7 @@ p {
 
 nav {
   position: fixed;
+  z-index: 99;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   align-items: center;
@@ -39,7 +42,7 @@ nav {
   height: 8vh;
   min-height: $nav_height_min;
   max-height: $nav_height_max;
-  background-color: var(--nav-bg-color);
+  background-color: var(--color-primary);
 }
 
 .logo {
@@ -54,11 +57,27 @@ nav {
   width: 100%;
   justify-content: space-around;
   &__link {
+    display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5rem;
-    color: var(--nav-section-color);
+    color: inherit;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 1em;
+      right: 1em;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transition: transform 150ms ease-in-out;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+    }
   }
 
   &__list {
@@ -73,7 +92,7 @@ nav {
   &__line {
     width: 30px;
     height: 3px;
-    background-color: var(--nav-btn-color);
+    background-color: var(--color-secondary);
     margin: 5px;
   }
 }
@@ -81,10 +100,14 @@ nav {
 .head {
   padding-top: 5.5rem;
   &__sub {
+    margin: 1rem auto;
+    padding: 0 1.25rem;
     text-align: center;
+    width: fit-content;
     font-size: 3.25vw;
-    padding-bottom: 0.5em;
     font-weight: 600;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
   }
 }
 
@@ -97,13 +120,14 @@ nav {
 }
 
 .btn {
-  background-color: var(--nav-bg-color);
-  color: var(--nav-section-color);
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  margin: 1.5rem auto;
   text-transform: uppercase;
   font-size: 1.15rem;
-  padding: 0.75em;
-  font-weight: 500;
-  letter-spacing: 1px;
+  padding: 0.75em 1.25em;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 @media screen and (max-width: 950px) {
@@ -137,7 +161,7 @@ nav {
     height: 92vh;
     top: 8vh;
     width: 35%;
-    background-color: var(--nav-bg-color);
+    background-color: var(--color-primary);
     display: flex;
     flex-direction: column;
     align-items: center;

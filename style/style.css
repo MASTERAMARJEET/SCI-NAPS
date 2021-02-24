@@ -1,8 +1,8 @@
 :root {
   --font-primary: Helvetica;
-  --nav-bg-color: aqua;
-  --nav-btn-color: black;
-  --nav-section-color: black;
+  --color-primary: black;
+  --color-secondary: white;
+  --color-accent: rgb(255, 60, 223);
 }
 
 * {
@@ -14,7 +14,9 @@
 
 body {
   font-family: var(--font-primary);
-  line-height: 1.75;
+  line-height: 1.25;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 h1 {
@@ -30,6 +32,7 @@ p {
 
 nav {
   position: fixed;
+  z-index: 99;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 5fr 1fr;
@@ -41,7 +44,7 @@ nav {
   height: 8vh;
   min-height: 64px;
   max-height: 6rem;
-  background-color: var(--nav-bg-color);
+  background-color: var(--color-primary);
 }
 
 .logo {
@@ -65,11 +68,34 @@ nav {
 }
 
 .links__link {
+  display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1.5rem;
-  color: var(--nav-section-color);
+  color: inherit;
+}
+
+.links__link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  right: 1em;
+  height: 2px;
+  background: currentColor;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 150ms ease-in-out;
+  transition: -webkit-transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+}
+
+.links__link:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .links__list {
@@ -85,7 +111,7 @@ nav {
 .burger__line {
   width: 30px;
   height: 3px;
-  background-color: var(--nav-btn-color);
+  background-color: var(--color-secondary);
   margin: 5px;
 }
 
@@ -94,10 +120,16 @@ nav {
 }
 
 .head__sub {
+  margin: 1rem auto;
+  padding: 0 1.25rem;
   text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   font-size: 3.25vw;
-  padding-bottom: 0.5em;
   font-weight: 600;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .content {
@@ -116,13 +148,14 @@ nav {
 }
 
 .btn {
-  background-color: var(--nav-bg-color);
-  color: var(--nav-section-color);
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  margin: 1.5rem auto;
   text-transform: uppercase;
   font-size: 1.15rem;
-  padding: 0.75em;
-  font-weight: 500;
-  letter-spacing: 1px;
+  padding: 0.75em 1.25em;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 @media screen and (max-width: 950px) {
@@ -155,7 +188,7 @@ nav {
     height: 92vh;
     top: 8vh;
     width: 35%;
-    background-color: var(--nav-bg-color);
+    background-color: var(--color-primary);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
